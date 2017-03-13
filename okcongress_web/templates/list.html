@@ -1,57 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "base.html" %}
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>OK Legislature Tool</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="/static/css/normalize.css">
-  <link rel="stylesheet" href="/static/css/skeleton.css">
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
-
-</head>
-<body>
-
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row">
-      <div class="two-thirds column" style="margin-top: 25%">
-        {% block content %}
-        <h4>Committees</h4>
-        <p><ul>
-            {% for cmte in cmtes %}
-                <li>{{cmte}}</li>
-                <ul>
-                    {% for member in membership[cmte] %}
-                    <li> {{member.lname}}, {{member.fname}} </li>
-                    {% endfor %}
-                </ul>
+{% block content %}
+<h4>Committees</h4>
+<p><ul>
+    {% for cmte in cmtes %}
+        <li>{{cmte}}</li>
+        <ul>
+            {% for member in membership[cmte] %}
+            <li> {{member.lname}}, {{member.fname}} ({{member.party}}-{{member.district}})</li>
             {% endfor %}
-        </ul></p>
-        {% endblock content %}
-      </div>
-    </div>
-  </div>
-
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
-</html>
+        </ul>
+    {% endfor %}
+</ul></p>
+{% endblock content %}

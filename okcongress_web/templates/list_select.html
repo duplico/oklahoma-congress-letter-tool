@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+    {{ super() }} &raquo;
+      <a class="button" href="#">Committee Letter</a>
+{% endblock breadcrumb %}
+
+{% block content %}
+<form action="", method="get">
+    <div class="row">
+        <div class="one-half column">            
+            <h4>Build your letter</h4>
+            <h5>Basics</h5>
+            <p>Provide some quick basic information regarding the bill you're
+            writing about.</p>
+        </div>
+    </div>
+<div class="row">
+    <div class="three columns">
+        <label for="support">I'm writing in</label>
+        <select class="u-full-width" id="support" name="support">
+            <option value="support">Support</option>
+            <option value="oppose">Opposition</option>
+        </select>
+    </div>
+    <div class="three columns">
+        <label for="bill">of bill number</label>
+        <input type="text" class="u-full-width" placeholder="SB 694" id="bill"
+         name="bill">
+    </div>
+    <div class="six columns">
+        <label for="bill">whose purpose is</label>
+        <textarea name="purpose" class="u-full-width" placeholder="to overrule local city governments' protections for LGBT people" id="purpose"></textarea>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <h4>Committees</h4>
+            {% for i in range(all_cmtes|length)%}
+                    <label>
+                        <input type="checkbox" name="cmte", value={{i}}>
+                        <span class="label-body">{{all_cmtes[i]}}</span>
+                    </label>
+            {% endfor %}
+    </div>
+</div>
+<div class="row">
+    <div class="one column">
+        <input class="button-primary" type="submit" value="Submit">
+    </div>
+</div>
+</form>
+{% endblock content %}
+
+{% block end %}
+{{ super() }}
+{% endblock end %}

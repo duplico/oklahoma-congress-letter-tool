@@ -21,10 +21,14 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="/static/css/normalize.css">
   <link rel="stylesheet" href="/static/css/skeleton.css">
+  <link rel="stylesheet" href="/static/css/collapsible.css">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <script type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="/static/js/jquery.collapsible.min.js"></script>
 
 </head>
 <body>
@@ -33,10 +37,51 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
-        {% block content %}
-        <h4>Words</h4>
-        <p>content</p>
+      <div class="twelve columns">
+      {% block breadcrumb %}
+          <a class="button" href="{{ url_for('index') }}">Home</a>
+      {% endblock %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="three columns">
+        <img src="/static/images/ok.png" class="u-max-full-width" style="vertical-align: middle">
+      </div>
+      <div class="five columns">
+        <h1>Oklahoma Legislature Tool</h1>
+      </div>
+    </div>
+    {% block content %}
+      <div class="row">
+        <div class="one-half column">
+          <h4>About</h4>
+          <h5>Purpose</h5>
+          <p>The purpose of this site is to provide a quick tool to generage
+          letters to Oklahoma legislatures, based on individual selection,
+          or committee membership. It will help you generate (a) a list of
+          phone numbers to call and a script to read based on your goal and
+          specific legislation, and/or (b) a stack of letters and envelopes
+          to print, sign, and mail to those legislators.</p>
+          <h5>Data source</h5>
+          <p>The source of legislator office numbers, phone numbers, and
+          committee membership data is from a script that scrapes the
+          official sites. The house data is decent, but the senate site is
+          a mess. Because Oklahoma does not provide legislative data
+          in machine readable format, web scraping is unfortunately
+          the best alternative. Please report any errors.</p>
+          <h5>Author</h5>
+          <p>This is a quick weekend project of <a href="http://dupli.co">George
+          Louthan</a>. Views are my own, etc. The <a href="https://bitbucket.org/duplico/oklahoma-congress-letter-tool">
+          code is available on my bitbucket.</a> This is a work in progress.
+          <strong>Contributors are welcome</strong>, whether an activist
+          looking for feature requests, or a developer looking to pitch in.</p>
+        </div>
+        <div class="one-half column">
+          <h4>Menu</h4>
+            <a href="" class="button">Legislator & committee listing</a> <br>
+            <a href="" class="button">Find your representatives</a> <br>
+            <a href="{{ url_for('letter_start') }}" class="button">Write your legislators</a>
+          </ul>
         {% endblock content %}
       </div>
     </div>
